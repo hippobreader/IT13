@@ -48,9 +48,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(601, 130);
+            this.btnDelete.Location = new System.Drawing.Point(589, 130);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(100, 23);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -58,9 +58,9 @@
             // 
             // refresh
             // 
-            this.refresh.Location = new System.Drawing.Point(601, 176);
+            this.refresh.Location = new System.Drawing.Point(589, 204);
             this.refresh.Name = "refresh";
-            this.refresh.Size = new System.Drawing.Size(75, 23);
+            this.refresh.Size = new System.Drawing.Size(100, 23);
             this.refresh.TabIndex = 4;
             this.refresh.Text = "Refresh";
             this.refresh.UseVisualStyleBackColor = true;

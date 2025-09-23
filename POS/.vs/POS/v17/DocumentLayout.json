@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\pos\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\pos\\adminform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\adminform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|c:\\users\\piyero\\documents\\github\\it13\\pos\\pos\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\pos\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -23,12 +11,24 @@
       "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\adminform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\pos\\cashierform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\cashierform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\CashierForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:POS\\CashierForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\pos\\cashierform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\cashierform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\pos\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\pos\\adminform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\adminform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|c:\\users\\piyero\\documents\\github\\it13\\pos\\pos\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|solutionrelative:pos\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F7A2567E-B6F6-4C1E-A080-82DAAE63D0F2}|POS\\POS.csproj|C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\RegisterForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -75,20 +75,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "CashierForm.cs",
               "DocumentMoniker": "C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\CashierForm.cs",
               "RelativeDocumentMoniker": "POS\\CashierForm.cs",
               "ToolTip": "C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\CashierForm.cs",
               "RelativeToolTip": "POS\\CashierForm.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAUwEEAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAIwGMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-17T16:48:57.449Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "CashierForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\CashierForm.cs",
               "RelativeDocumentMoniker": "POS\\CashierForm.cs",
@@ -100,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "AdminForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\AdminForm.cs",
               "RelativeDocumentMoniker": "POS\\AdminForm.cs",
@@ -112,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "LoginForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\LoginForm.cs",
               "RelativeDocumentMoniker": "POS\\LoginForm.cs",
@@ -124,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "RegisterForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\RegisterForm.cs",
               "RelativeDocumentMoniker": "POS\\RegisterForm.cs",
@@ -136,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "AdminForm.cs",
               "DocumentMoniker": "C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\AdminForm.cs",
               "RelativeDocumentMoniker": "POS\\AdminForm.cs",
@@ -149,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "LoginForm.cs",
               "DocumentMoniker": "C:\\Users\\piyero\\Documents\\GitHub\\IT13\\POS\\POS\\LoginForm.cs",
               "RelativeDocumentMoniker": "POS\\LoginForm.cs",

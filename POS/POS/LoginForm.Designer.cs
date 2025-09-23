@@ -52,9 +52,9 @@
             this.txtpass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtpass.Location = new System.Drawing.Point(572, 222);
             this.txtpass.Name = "txtpass";
-            this.txtpass.PasswordChar = '*';
             this.txtpass.Size = new System.Drawing.Size(168, 20);
             this.txtpass.TabIndex = 1;
+            this.txtpass.UseSystemPasswordChar = true;
             // 
             // btn_login
             // 
