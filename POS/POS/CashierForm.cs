@@ -15,11 +15,11 @@ namespace POS
 
     public partial class CashierForm : Form
     {
+        
         MySqlConnection con = new MySqlConnection(Global.connectionString);
         public CashierForm()
         {
             InitializeComponent();
-            MySqlConnection con = new MySqlConnection(Global.connectionString);
             LoadData();
 
         }
@@ -88,6 +88,16 @@ namespace POS
         private void btnRefresh_Click_1(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void CashierForm_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textP_id_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

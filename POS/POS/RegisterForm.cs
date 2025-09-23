@@ -35,7 +35,7 @@ namespace POS
             role.Items.Add("Cashier");
         }
 
-        private void reg_Click_1(object sender, EventArgs e)
+        private void reg_Click_1(object sender, EventArgs e)    
         {
             using (MySqlConnection con = new MySqlConnection(Global.connectionString))
             {
@@ -61,6 +61,23 @@ namespace POS
             form1.Show();
             this.Hide();
 
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkShow_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (chkShow.Checked == true)
+            {
+                password.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                password.UseSystemPasswordChar = true;
+            }
         }
     }
 }

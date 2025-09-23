@@ -118,5 +118,22 @@ namespace POS
                 con.Close();
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkShow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShow.Checked == true)
+            {
+                txtpass.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtpass.UseSystemPasswordChar = true;
+            }
+        }
     }
 }

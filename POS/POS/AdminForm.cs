@@ -17,6 +17,7 @@ namespace POS
         public AdminForm()
         {
             InitializeComponent();
+            LoadData();
         }
 
         public void LoadData()
@@ -46,6 +47,16 @@ namespace POS
                 MessageBox.Show("Product Deleted!");
                 LoadData();
             }
+        }
+
+        private void refresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
