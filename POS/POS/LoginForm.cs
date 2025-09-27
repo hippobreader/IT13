@@ -135,5 +135,10 @@ namespace POS
                 txtpass.UseSystemPasswordChar = true;
             }
         }
+
+        private void txtpass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
