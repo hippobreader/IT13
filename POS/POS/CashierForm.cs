@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,46 +22,72 @@ namespace POS
         public CashierForm()
         {
             InitializeComponent();
-            LoadData();
+            
 
-            listView1.View = View.Details;
-            listView1.Columns.Add("ID", 20);
-            listView1.Columns.Add("Name", 150);
-            listView1.Columns.Add("Price", 100);
-            listView1.Columns.Add("Quantity", 50);
+           
         }
 
         private void LoadData()
         {
+            
+        }
+        private bool CheckStock(string productId, int requestedQty)
+        {
             try
             {
-                con.Open();
-                MySqlDataAdapter da = new MySqlDataAdapter("SELECT * FROM product", con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dataGridView1.DataSource = dt;
-                con.Close();
+                using (MySqlConnection conn = new MySqlConnection(Global.connectionString))
+                {
+                    conn.Open();
 
-                dataGridView1.Columns["product_id"].HeaderText = "ID";
-                dataGridView1.Columns["product_name"].HeaderText = "Product Name";
-                dataGridView1.Columns["price"].HeaderText = "Price (₱)";
-                dataGridView1.Columns["quantity"].HeaderText = "Stock Qty";
+                    string query = "SELECT quantity FROM product WHERE product_id = @productId";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@productId", productId);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        int stock = Convert.ToInt32(result);
+
+                        if (stock >= requestedQty)
+                        {
+                            return true; // enough stock
+                        }
+                        else
+                        {
+                            MessageBox.Show("⚠ Out of Stock! Only " + stock + " left.");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("⚠ Product not found!");
+                        return false;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error checking stock: " + ex.Message);
+                return false;
             }
         }
 
-
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-
-            string productName = txtName.Text;   // user input
-            int qty = int.Parse(txtQuantity.Text);    // user input
+            // Declare variables
+            string productName = txtName.Text;
+            int qty = 0;  // We'll parse qty later
 
             string productId = "";
             decimal price = 0;
+
+            // Validate quantity input before parsing
+            if (!int.TryParse(txtQuantity.Text, out qty) || qty <= 0)
+            {
+                MessageBox.Show("❌ Please enter a valid quantity!");
+                return;
+            }
 
             // 🔹 Step 1: Fetch product ID + Price from DB using Name
             using (MySqlConnection con = new MySqlConnection(Global.connectionString))
@@ -81,9 +108,17 @@ namespace POS
                     MessageBox.Show("❌ Product not found in database!");
                     return;
                 }
+                con.Close();
             }
 
-            // 🔹 Step 2: Check if product already exists in ListView
+            // 🔹 Step 2: Check stock before adding (use productId and qty here)
+            if (!CheckStock(productId, qty))
+            {
+                MessageBox.Show("❌ Not enough stock to add!");
+                return;
+            }
+
+            // 🔹 Step 3: Check if product already exists in ListView
             bool found = false;
             foreach (ListViewItem existingItem in listView1.Items)
             {
@@ -94,18 +129,23 @@ namespace POS
                     int newQty = currentQty + qty;
                     existingItem.SubItems[3].Text = newQty.ToString();
 
+                    decimal total = price * newQty;
+                    existingItem.SubItems[4].Text = total.ToString("0.00");
+
                     found = true;
                     break;
                 }
             }
 
-            // 🔹 Step 3: Add as new if not found
+            // 🔹 Step 4: Add as new if not found
             if (!found)
             {
                 ListViewItem item = new ListViewItem(productId);    // Column 0: ID (from DB)
                 item.SubItems.Add(productName);                     // Column 1: Name (user input)
                 item.SubItems.Add(price.ToString("0.00"));          // Column 2: Price (from DB)
                 item.SubItems.Add(qty.ToString());                  // Column 3: Quantity (user input)
+   
+
                 listView1.Items.Add(item);
             }
 
@@ -114,39 +154,51 @@ namespace POS
             txtQuantity.Clear();
 
 
-
-
-
         }
 
         private void btnUpdate_Click_1(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow != null)
+            if (listView1.SelectedItems.Count > 0)
             {
-                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["id"].Value);
+                ListViewItem selected = listView1.SelectedItems[0];
 
-                string query = "UPDATE sales SET quantity=@quantity WHERE id=@id";
-                MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("@quantity", txtQuantity.Text);
+                // Example: update quantity based on user input
+                int newQty;
+                if (int.TryParse(txtQuantity.Text, out newQty))
+                {
+                    selected.SubItems[3].Text = newQty.ToString();
 
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
+                    // Optional: update subtotal if you have a column for it
+                    decimal price = decimal.Parse(selected.SubItems[2].Text);
+                    decimal subtotal = price * newQty;
+                    if (selected.SubItems.Count > 4)
+                        selected.SubItems[4].Text = subtotal.ToString("0.00");
 
-                MessageBox.Show("Product Updated!");
-                LoadData();
+                    MessageBox.Show("✅ Item updated!");
+                }
+                else
+                {
+                    MessageBox.Show("⚠ Please enter a valid number for quantity.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("⚠ Please select an item to edit.");
             }
         }
 
         private void btnRefresh_Click_1(object sender, EventArgs e)
         {
-            LoadData();
+
         }
 
         private void CashierForm_Load(object sender, EventArgs e)
         {
-
+            listView1.View = View.Details;
+            listView1.Columns.Add("ID", 50);
+            listView1.Columns.Add("Name", 150);
+            listView1.Columns.Add("Price", 100);
+            listView1.Columns.Add("Quantity", 80);
         }
 
         private void textP_id_TextChanged(object sender, EventArgs e)
@@ -192,10 +244,69 @@ namespace POS
 
 
         }
+        private decimal ComputeTotal()
+        {
+            decimal total = 0;
+
+            foreach (ListViewItem item in listView1.Items)
+            {
+                decimal price = decimal.Parse(item.SubItems[2].Text); // Price from DB
+                int qty = int.Parse(item.SubItems[3].Text);           // User input
+                total += price * qty; // compute on the fly
+            }
+
+            return total;
+        }
 
         private void btnChk_Click(object sender, EventArgs e)
         {
+            con.Open();
 
+            foreach (ListViewItem item in listView1.Items)
+            {
+                string productId = item.SubItems[0].Text;          // ID from ListView
+                int purchasedQty = int.Parse(item.SubItems[3].Text); // Quantity purchased
+
+                // 🔹 Deduct the stock in DB
+                string updateQuery = "UPDATE product SET quantity = quantity - @purchasedQty WHERE product_id = @id";
+                MySqlCommand cmd = new MySqlCommand(updateQuery, con);
+                cmd.Parameters.AddWithValue("@purchasedQty", purchasedQty);
+                cmd.Parameters.AddWithValue("@id", productId);
+
+                cmd.ExecuteNonQuery();
+            }
+            try
+            {
+                // Get total
+                decimal total = 0;
+                foreach (ListViewItem item in listView1.Items)
+                {
+                    total += ComputeTotal(); // assuming SubItem[4] = total per item
+                }
+
+                // Get cash input
+                decimal cash = decimal.Parse(txtCash.Text);
+
+                // Calculate change
+                decimal change = cash - total;
+
+                if (change < 0)
+                {
+                    MessageBox.Show("Insufficient cash! Customer still owes " + Math.Abs(change).ToString("0.00"));
+                }
+                else
+                {
+                    lblTotal.Text = "TOTAL: " + total.ToString("0.00");
+                    lblCash.Text = "CASH: " + cash.ToString("0.00");
+                    lblChange.Text = "CHANGE: " + change.ToString("0.00");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            txtCash.Clear();
+            listView1.Items.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -204,13 +315,33 @@ namespace POS
             if (result == DialogResult.Yes)
             {
                 listView1.Items.Clear();
-                MessageBox.Show("Clear All successfully!");
+                MessageBox.Show("✅ Clear All Items successfully!");
             }
             else
             {
                 MessageBox.Show("Delete cancelled.");
             }
             
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            decimal total = 0;
+
+            foreach (ListViewItem item in listView1.Items)
+            {
+                decimal price = decimal.Parse(item.SubItems[2].Text);  // Price
+                int qty = int.Parse(item.SubItems[3].Text);            // Quantity
+
+                total += price * qty;
+            }
+            con.Close();
+            lblTotal.Text = "Total: ₱" + total.ToString("0.00");
+        }
+
+        private void txtCash_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

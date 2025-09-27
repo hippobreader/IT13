@@ -67,7 +67,7 @@ namespace POS
                     }
                     else
                     {
-                        MessageBox.Show("Invalid username or password.");
+                        MessageBox.Show("⚠ Invalid username or password.");
                     }
                 }
                 catch (Exception ex)
@@ -81,7 +81,7 @@ namespace POS
 
             if (username == "" || password == "")
             {
-                MessageBox.Show("Please enter both username and password.");
+                MessageBox.Show("⚠ Please enter both username and password.");
                 return;
             }
 
@@ -98,7 +98,7 @@ namespace POS
 
                 if (result == null) 
                 {
-                    MessageBox.Show("Username does not exist!");
+                    MessageBox.Show("⚠ Username does not exist!");
                 }
                 else
                 {
@@ -106,12 +106,12 @@ namespace POS
 
                     if (dbPassword == password)
                     {
-                        MessageBox.Show("Login successful!");
+                        MessageBox.Show("✅ Login successful!");
                     
                     }
                     else
                     {
-                        MessageBox.Show("Incorrect password!");
+                        MessageBox.Show("⚠ Incorrect password!");
                     }
                 }
 

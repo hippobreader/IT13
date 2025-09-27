@@ -45,7 +45,7 @@ namespace POS
                     cmd.ExecuteNonQuery();
                 }
 
-                MessageBox.Show("Product deleted successfully!");
+                MessageBox.Show("✅ Product deleted successfully!");
             }
             else
             {
@@ -86,7 +86,7 @@ namespace POS
             cmd.ExecuteNonQuery();
             con.Close();
 
-            MessageBox.Show("Product Added!");
+            MessageBox.Show("✅Product Added!");
             LoadData();
         }
 
@@ -107,7 +107,7 @@ namespace POS
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                MessageBox.Show("Product Updated!");
+                MessageBox.Show("✅Product Updated!");
                 LoadData();
             }
         }
