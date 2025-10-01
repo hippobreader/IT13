@@ -356,8 +356,8 @@ namespace POS
 
             foreach (ListViewItem item in listView1.Items)
             {
-                string productName = item.SubItems[1].Text; // Name column in listView1
-                string qty = item.SubItems[3].Text;         // Quantity column in listView1
+                string productName = item.SubItems[1].Text; // Name column
+                string qty = item.SubItems[3].Text;         // Quantity column
 
                 // Add to lvCart with only Name + Quantity
                 ListViewItem cartItem = new ListViewItem(productName);
@@ -365,12 +365,33 @@ namespace POS
 
                 lvCart.Items.Add(cartItem);
 
-                // Compute total (price * qty)
+                // Compute total
                 decimal price = decimal.Parse(item.SubItems[2].Text);
                 total += price * int.Parse(qty);
             }
 
+            // Show total
             lblTotal.Text = "Total: ₱" + total.ToString("0.00");
+
+            // ✅ Check money
+            if (!decimal.TryParse(txtCash.Text, out decimal cash))
+            {
+                MessageBox.Show("⚠ Please enter a valid cash amount.");
+                return;
+            }
+
+            decimal change = cash - total;
+
+            if (change < 0)
+            {
+                MessageBox.Show("❌ Not enough money! Customer still owes ₱" + Math.Abs(change).ToString("0.00"));
+            }
+            else
+            {
+                lblCash.Text = "Cash: ₱" + cash.ToString("0.00");
+                lblChange.Text = "Change: ₱" + change.ToString("0.00");
+                MessageBox.Show("✅ Purchase successful!");
+            }
 
         }
 
@@ -484,6 +505,11 @@ namespace POS
                 MessageBox.Show("Admin login cancelled.", "Cancelled",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

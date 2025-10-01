@@ -32,29 +32,91 @@ namespace POS
 
         private void RegisterForm_Load(object sender, EventArgs e)
         {
+            role.DropDownStyle = ComboBoxStyle.DropDownList;
             role.Items.Add("Admin");
             role.Items.Add("Cashier");
         }
 
         private void reg_Click_1(object sender, EventArgs e)    
         {
+            string fullName = name.Text.Trim();
+            string username = txtusername.Text.Trim();
+            string password = txtpassword.Text.Trim();
+            string selectedRole = role.SelectedItem != null ? role.SelectedItem.ToString() : "";
 
-            using (MySqlConnection con = new MySqlConnection(Global.connectionString))
+            // Check if fields are empty
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(username) ||
+                string.IsNullOrEmpty(password) || string.IsNullOrEmpty(selectedRole))
             {
-                con.Open();
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO employee (name, username, password, role) VALUES (@name, @username, @password, @role)", con);
-                cmd.Parameters.AddWithValue("@name", name.Text);
-                cmd.Parameters.AddWithValue("@username", username.Text);
-                cmd.Parameters.AddWithValue("@password", password.Text);
-                cmd.Parameters.AddWithValue("@role", role.SelectedItem.ToString());
-                cmd.ExecuteNonQuery();
-                name.Clear();
-                username.Clear();
-                password.Clear();
+                MessageBox.Show("⚠ Please fill in all fields before registering.");
+                return;
             }
-            LoginForm form1 = new LoginForm();
-            form1.Show();
-            this.Close();
+
+            // Validate password before saving
+            if (!ValidatePassword(password))
+            {
+                return; // Stop register if password is invalid
+            }
+
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(Global.connectionString))
+                {
+                    con.Open();
+                    MySqlCommand cmd = new MySqlCommand(
+                        "INSERT INTO employee (name, username, password, role) VALUES (@name, @username, @password, @role)", con);
+                    cmd.Parameters.AddWithValue("@name", fullName);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", password); // ⚠ hash later!
+                    cmd.Parameters.AddWithValue("@role", selectedRole);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("✅ Registration successful!");
+                name.Clear();
+                txtusername.Clear();
+                txtpassword.Clear();
+                role.SelectedIndex = -1; // reset dropdown
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("❌ Error: " + ex.Message);
+            }
+        }
+            
+        
+        private bool ValidatePassword(string password)
+        {
+            // At least 8 characters
+            if (password.Length < 8)
+            {
+                MessageBox.Show("❌ Password must be at least 8 characters long.");
+                return false;
+            }
+
+            // At least one uppercase
+            if (!password.Any(char.IsUpper))
+            {
+                MessageBox.Show("❌ Password must contain at least one uppercase letter.");
+                return false;
+            }
+
+            // At least one number
+            if (!password.Any(char.IsDigit))
+            {
+                MessageBox.Show("❌ Password must contain at least one number.");
+                return false;
+            }
+            else
+            {
+                LoginForm form1 = new LoginForm();
+                form1.Show();
+                this.Close();
+            }
+          
+
+            return true;
         }
 
         private void b_login_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
@@ -74,11 +136,11 @@ namespace POS
         {
             if (chkShow.Checked == true)
             {
-                password.UseSystemPasswordChar = false;
+                txtpassword.UseSystemPasswordChar = false;
             }
             else
             {
-                password.UseSystemPasswordChar = true;
+                txtpassword.UseSystemPasswordChar = true;
             }
         }
 

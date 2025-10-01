@@ -19,6 +19,8 @@ namespace POS
         {
             InitializeComponent();
             LoadData();
+            this.Size = new Size(1600, 768);
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         public void LoadData()
@@ -84,12 +86,16 @@ namespace POS
         {
             string query = "INSERT INTO product (product_id, product_name, quantity, price) VALUES (@id, @name, @quantity, @price)";
             MySqlCommand cmd = new MySqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@id", txtItemCode.Text);
-            cmd.Parameters.AddWithValue("@name", txtName.Text);
-            cmd.Parameters.AddWithValue("@quantity", txtQuan.Text);
-            cmd.Parameters.AddWithValue("@price", txtPrice.Text);
+            cmd.Parameters.AddWithValue("@id", txtItemCode.Text.ToUpper());
+            cmd.Parameters.AddWithValue("@name", txtName.Text.ToUpper());
+            cmd.Parameters.AddWithValue("@quantity", txtQuan.Text.ToUpper());
+            cmd.Parameters.AddWithValue("@price", txtPrice.Text.ToUpper());
+            txtItemCode.Clear();
+            txtName.Clear();
+            txtQuan.Clear();
+            txtPrice.Clear();
 
-            con.Open();
+            con.Open(); 
             cmd.ExecuteNonQuery();
             con.Close();
 
@@ -103,12 +109,16 @@ namespace POS
             {
                 int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["product_id"].Value);
 
-                string query = "UPDATE product SET price=@price, quantity=@quantity WHERE product_id=@id";
+                string query = "UPDATE product SET product_name = @name, price = @price, quantity = @quantity WHERE product_id=@id";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id", id);
-               
+                cmd.Parameters.AddWithValue("@name", txtName.Text);
                 cmd.Parameters.AddWithValue("@price", txtPrice.Text);
                 cmd.Parameters.AddWithValue("@quantity", txtQuan.Text);
+
+                txtName.Clear();
+                txtQuan.Clear();
+                txtPrice.Clear();
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -129,6 +139,11 @@ namespace POS
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

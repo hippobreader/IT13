@@ -43,7 +43,7 @@
             // 
             this.txtusername.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtusername.Location = new System.Drawing.Point(629, 170);
+            this.txtusername.Location = new System.Drawing.Point(646, 156);
             this.txtusername.Multiline = true;
             this.txtusername.Name = "txtusername";
             this.txtusername.Size = new System.Drawing.Size(235, 33);
@@ -53,7 +53,7 @@
             // 
             this.txtpass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtpass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpass.Location = new System.Drawing.Point(629, 247);
+            this.txtpass.Location = new System.Drawing.Point(646, 233);
             this.txtpass.Name = "txtpass";
             this.txtpass.Size = new System.Drawing.Size(235, 31);
             this.txtpass.TabIndex = 1;
@@ -67,7 +67,7 @@
             this.btn_login.FlatAppearance.BorderSize = 0;
             this.btn_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_login.ForeColor = System.Drawing.Color.White;
-            this.btn_login.Location = new System.Drawing.Point(656, 338);
+            this.btn_login.Location = new System.Drawing.Point(673, 324);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(185, 38);
             this.btn_login.TabIndex = 2;
@@ -80,7 +80,7 @@
             this.register.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.register.AutoSize = true;
             this.register.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.register.Location = new System.Drawing.Point(676, 393);
+            this.register.Location = new System.Drawing.Point(693, 379);
             this.register.Name = "register";
             this.register.Size = new System.Drawing.Size(142, 20);
             this.register.TabIndex = 3;
@@ -94,7 +94,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.label1.Location = new System.Drawing.Point(629, 147);
+            this.label1.Location = new System.Drawing.Point(646, 133);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 20);
             this.label1.TabIndex = 6;
@@ -108,7 +108,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.label2.Location = new System.Drawing.Point(629, 224);
+            this.label2.Location = new System.Drawing.Point(646, 210);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 20);
             this.label2.TabIndex = 7;
@@ -135,7 +135,7 @@
             this.chkShow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.chkShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkShow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkShow.Location = new System.Drawing.Point(870, 246);
+            this.chkShow.Location = new System.Drawing.Point(887, 232);
             this.chkShow.Name = "chkShow";
             this.chkShow.Size = new System.Drawing.Size(31, 33);
             this.chkShow.TabIndex = 10;
