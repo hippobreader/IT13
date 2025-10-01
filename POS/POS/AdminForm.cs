@@ -23,12 +23,19 @@ namespace POS
 
         public void LoadData()
         {
-            string query = "SELECT * FROM product";
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query, con);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
+            string query = "SELECT * FROM product"; 
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query, con); 
+            DataTable table = new DataTable(); 
+            adapter.Fill(table); 
             dataGridView1.DataSource = table;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dataGridView1.Columns["product_id"].HeaderText = "ID";
+            dataGridView1.Columns["product_name"].HeaderText = "Product Name";
+            dataGridView1.Columns["quantity"].HeaderText = "Stock Quantity";
+            dataGridView1.Columns["price"].HeaderText = "Unit Price";
         }
+        
 
         private void btnDelete_Click_1(object sender, EventArgs e)
         {
@@ -117,6 +124,11 @@ namespace POS
             CashierForm form = new CashierForm();
             form.Show();
             this.Hide();
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }

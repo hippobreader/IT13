@@ -140,3 +140,4 @@ C:\Users\piyero\Documents\GitHub\IT_13\hippobreader\IT13\POS\POS\obj\Debug\POS.e
 C:\Users\piyero\Documents\GitHub\IT_13\hippobreader\IT13\POS\POS\obj\Debug\POS.pdb
 C:\Users\piyero\Documents\GitHub\IT_13\hippobreader\IT13\POS\POS\obj\Debug\POS.Login4Admin.resources
 C:\Users\piyero\Documents\GitHub\IT13\POS\POS\bin\Debug\POS.pdb
+C:\Users\piyero\Documents\GitHub\IT13\POS\POS\obj\Debug\POS.Login4Admin.resources

@@ -20,6 +20,7 @@ namespace POS
         public RegisterForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
  
@@ -37,6 +38,7 @@ namespace POS
 
         private void reg_Click_1(object sender, EventArgs e)    
         {
+
             using (MySqlConnection con = new MySqlConnection(Global.connectionString))
             {
                 con.Open();
@@ -101,6 +103,11 @@ namespace POS
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

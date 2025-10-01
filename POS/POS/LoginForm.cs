@@ -20,6 +20,7 @@ namespace POS
         public LoginForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void register_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)

@@ -111,6 +111,12 @@
       <DependentUpon>CashierForm.cs</DependentUpon>
     </Compile>
     <Compile Include="dbvariable.cs" />
+    <Compile Include="Login4Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login4Admin.Designer.cs">
+      <DependentUpon>Login4Admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CashierForm.resx">
       <DependentUpon>CashierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login4Admin.resx">
+      <DependentUpon>Login4Admin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -169,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hidden.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngwing.com.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

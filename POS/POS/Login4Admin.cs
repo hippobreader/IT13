@@ -16,6 +16,12 @@ namespace POS
         public Login4Admin()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        private void Login4Admin_Load(object sender, EventArgs e)
+        {
+           
         }
 
         private void btn_login_Click(object sender, EventArgs e)
@@ -43,36 +49,29 @@ namespace POS
                             admin.Show();
                             this.Hide();
                         }
-
                         else
                         {
-                            MessageBox.Show("Unknown role: " + role);
+                            MessageBox.Show("Not " + role + " Account");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Invalid username or password.");
+                        MessageBox.Show("⚠ Invalid username or password.");
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-                string username = txtusername.Text.Trim();
-                string password = txtpass.Text.Trim();
+
             }
         }
 
-        private void chkShow_CheckedChanged(object sender, EventArgs e)
+        private void cashier_Click(object sender, EventArgs e)
         {
-            if (chkShow.Checked == true)
-            {
-                txtpass.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                txtpass.UseSystemPasswordChar = true;
-            }
+            CashierForm cashier = new CashierForm();
+            cashier.Show();
+            this.Hide();
         }
     }
 }
