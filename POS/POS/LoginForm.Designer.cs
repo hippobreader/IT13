@@ -34,8 +34,8 @@
             this.register = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chkShow = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,6 +115,24 @@
             this.label2.Text = "Password";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
+            // chkShow
+            // 
+            this.chkShow.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chkShow.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkShow.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.chkShow.BackgroundImage = global::POS.Properties.Resources.show;
+            this.chkShow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.chkShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkShow.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.chkShow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkShow.Location = new System.Drawing.Point(887, 232);
+            this.chkShow.Name = "chkShow";
+            this.chkShow.Size = new System.Drawing.Size(31, 33);
+            this.chkShow.TabIndex = 10;
+            this.chkShow.UseVisualStyleBackColor = false;
+            this.chkShow.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -125,22 +143,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // chkShow
-            // 
-            this.chkShow.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.chkShow.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkShow.BackColor = System.Drawing.Color.Transparent;
-            this.chkShow.BackgroundImage = global::POS.Properties.Resources.hidden;
-            this.chkShow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.chkShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkShow.Location = new System.Drawing.Point(887, 232);
-            this.chkShow.Name = "chkShow";
-            this.chkShow.Size = new System.Drawing.Size(31, 33);
-            this.chkShow.TabIndex = 10;
-            this.chkShow.UseVisualStyleBackColor = true;
-            this.chkShow.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
             // 
             // LoginForm
             // 

@@ -37,10 +37,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.chkShow = new System.Windows.Forms.CheckBox();
             this.txtpassword = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.chkShow = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,21 +98,16 @@
             this.label3.Name = "label3";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // chkShow
-            // 
-            resources.ApplyResources(this.chkShow, "chkShow");
-            this.chkShow.BackColor = System.Drawing.Color.White;
-            this.chkShow.BackgroundImage = global::POS.Properties.Resources.hidden;
-            this.chkShow.ForeColor = System.Drawing.Color.White;
-            this.chkShow.Name = "chkShow";
-            this.chkShow.UseVisualStyleBackColor = false;
-            this.chkShow.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged_1);
-            // 
             // txtpassword
             // 
             resources.ApplyResources(this.txtpassword, "txtpassword");
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.UseSystemPasswordChar = true;
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
             // 
             // pictureBox1
             // 
@@ -121,16 +117,27 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // label4
+            // chkShow
             // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
+            resources.ApplyResources(this.chkShow, "chkShow");
+            this.chkShow.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.chkShow.BackgroundImage = global::POS.Properties.Resources.show;
+            this.chkShow.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.chkShow.Name = "chkShow";
+            this.chkShow.UseVisualStyleBackColor = false;
+            this.chkShow.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged_1);
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
             // 
             // RegisterForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.chkShow);
@@ -167,5 +174,6 @@
         private System.Windows.Forms.TextBox txtpassword;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

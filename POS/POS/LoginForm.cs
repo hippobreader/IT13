@@ -66,10 +66,7 @@ namespace POS
                             MessageBox.Show("Unknown role: " + role);
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("⚠ Invalid username or password.");
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
