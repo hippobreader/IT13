@@ -18,12 +18,17 @@ namespace POS
 
     public partial class CashierForm : Form
     {
-
+        private string cashierName;
         public CashierForm()
         {
             InitializeComponent();
-            this.Size = new Size(1600, 768);
+            this.Size = new Size(1584, 712);
             this.StartPosition = FormStartPosition.CenterScreen;
+            if(GlobalUser.IsLoggedIn)
+    {
+                cashierName = GlobalUser.Name;
+                lblName.Text = cashierName;
+            }
         }
 
 
@@ -106,7 +111,9 @@ namespace POS
                         return;
                     }
                     con.Close();
+
                 }
+                txtQuantity.Clear();
             }
 
             // 🔹 Step 2: Check stock before adding (use productId and qty here)
@@ -139,7 +146,7 @@ namespace POS
             if (!found)
             {
                 ListViewItem item = new ListViewItem(productId);    // Column 0: ID (from DB)
-                item.SubItems.Add(productName);                     // Column 1: Name (user input)
+                item.SubItems.Add(productName.ToUpper());           // Column 1: Name (user input)
                 item.SubItems.Add(price.ToString("0.00"));          // Column 2: Price (from DB)
                 item.SubItems.Add(qty.ToString());                  // Column 3: Quantity (user input)
 
@@ -183,6 +190,7 @@ namespace POS
             {
                 MessageBox.Show("⚠ Please select an item to edit.");
             }
+            txtQuantity.Clear();
         }
 
         private void btnRefresh_Click_1(object sender, EventArgs e)
@@ -194,8 +202,8 @@ namespace POS
         {
 
             LoadProducts();
-            
-            
+            lblName.Text = cashierName;
+
             // Setup ListView
             lvProducts.View = View.Details;
             lvProducts.FullRowSelect = true;
@@ -203,7 +211,7 @@ namespace POS
 
             lvCart.View = View.Details;
             lvCart.Columns.Clear();
-            lvCart.Columns.Add("Product Name", 150);
+            lvCart.Columns.Add("Product Name", 130);
             lvCart.Columns.Add("Quantity", 100);
 
             // Clear old columns (avoid duplicates on reload)
@@ -279,57 +287,105 @@ namespace POS
 
         private void btnChk_Click(object sender, EventArgs e)
         {
+            // 🟩 1. Validate cart
+            if (listView1.Items.Count == 0)
+            {
+                MessageBox.Show("⚠ No items in the cart!");
+                return;
+            }
+
+            // 🟩 2. Compute total
+            decimal total = ComputeTotal();
+
+            // 🟩 3. Validate cash input
+            if (string.IsNullOrWhiteSpace(txtCash.Text) || !decimal.TryParse(txtCash.Text, out decimal cash))
+            {
+                MessageBox.Show("⚠ Please enter a valid cash amount!");
+                return;
+            }
+
+            if (cash < total)
+            {
+                MessageBox.Show($"❌ Insufficient cash! Customer still owes ₱{(total - cash):0.00}");
+                return;
+            }
+
+            // 🟩 4. Confirm transaction
+            DialogResult confirm = MessageBox.Show("Proceed with purchase?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm != DialogResult.Yes)
+                return;
+
+            // 🟩 5. Process sale transaction
             using (MySqlConnection con = new MySqlConnection(Global.connectionString))
             {
                 con.Open();
+                MySqlTransaction transaction = con.BeginTransaction();
 
-                foreach (ListViewItem item in listView1.Items)
-                {
-                    string productId = item.SubItems[0].Text;          // ID from ListView
-                    int purchasedQty = int.Parse(item.SubItems[3].Text); // Quantity purchased
-
-                    // 🔹 Deduct the stock in DB
-                    string updateQuery = "UPDATE product SET quantity = quantity - @purchasedQty WHERE product_id = @id";
-                    MySqlCommand cmd = new MySqlCommand(updateQuery, con);
-                    cmd.Parameters.AddWithValue("@purchasedQty", purchasedQty);
-                    cmd.Parameters.AddWithValue("@id", productId);
-
-                    cmd.ExecuteNonQuery();
-                }
                 try
                 {
-                    // Get total
-                    decimal total = 0;
+                    // ✅ 5A: Insert into sales table using the logged-in cashier name
+                    // FIXED: Match column names with your database schema
+                    string insertSale = "INSERT INTO sales (cashier_name, date, total_amount) VALUES (@cashier_name, NOW(), @total)";
+                    MySqlCommand cmdSale = new MySqlCommand(insertSale, con, transaction);
+                    cmdSale.Parameters.AddWithValue("@cashier_name", cashierName);  // from constructor
+                    cmdSale.Parameters.AddWithValue("@total", total);
+                    cmdSale.ExecuteNonQuery();
+
+                    long saleId = cmdSale.LastInsertedId;
+
+                    // ✅ 5B: Insert each sold item
                     foreach (ListViewItem item in listView1.Items)
                     {
-                        total += ComputeTotal(); // assuming SubItem[4] = total per item
+                        string productId = item.SubItems[0].Text;
+                        string productName = item.SubItems[1].Text;
+                        decimal price = decimal.Parse(item.SubItems[2].Text);
+                        int qty = int.Parse(item.SubItems[3].Text);
+                        decimal itemTotal = price * qty;
+
+                        string insertItem = @"INSERT INTO sales_items (sale_id, product_id, product_name, quantity, price, total)
+                              VALUES (@sale_id, @product_id, @product_name, @quantity, @price, @total)";
+                        MySqlCommand cmdItem = new MySqlCommand(insertItem, con, transaction);
+                        cmdItem.Parameters.AddWithValue("@sale_id", saleId);
+                        cmdItem.Parameters.AddWithValue("@product_id", productId);
+                        cmdItem.Parameters.AddWithValue("@product_name", productName);
+                        cmdItem.Parameters.AddWithValue("@quantity", qty);
+                        cmdItem.Parameters.AddWithValue("@price", price);
+                        cmdItem.Parameters.AddWithValue("@total", itemTotal);
+                        cmdItem.ExecuteNonQuery();
+
+                        // ✅ 5C: Deduct from product stock
+                        string updateStock = "UPDATE product SET quantity = quantity - @qty WHERE product_id = @id";
+                        MySqlCommand cmdStock = new MySqlCommand(updateStock, con, transaction);
+                        cmdStock.Parameters.AddWithValue("@qty", qty);
+                        cmdStock.Parameters.AddWithValue("@id", productId);
+                        cmdStock.ExecuteNonQuery();
                     }
 
-                    // Get cash input
-                    decimal cash = decimal.Parse(txtCash.Text);
+                    // ✅ Commit all changes
+                    transaction.Commit();
 
-                    // Calculate change
+                    // 🟩 6. Update UI and show success
                     decimal change = cash - total;
+                    lblTotal.Text = "TOTAL: ₱" + total.ToString("0.00");
+                    lblCash.Text = "CASH: ₱" + cash.ToString("0.00");
+                    lblChange.Text = "CHANGE: ₱" + change.ToString("0.00");
 
-                    if (change < 0)
-                    {
-                        MessageBox.Show("Insufficient cash! Customer still owes " + Math.Abs(change).ToString("0.00"));
-                    }
-                    else
-                    {
-                        lblTotal.Text = "TOTAL: " + total.ToString("0.00");
-                        lblCash.Text = "CASH: " + cash.ToString("0.00");
-                        lblChange.Text = "CHANGE: " + change.ToString("0.00");
-                    }
+                    MessageBox.Show("✅ Transaction successful!\nChange: ₱" + change.ToString("0.00"));
+
+                    // 🟩 7. Clear cart
+                    txtCash.Clear();
+                    listView1.Items.Clear();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    transaction.Rollback();
+                    MessageBox.Show("❌ Error during checkout: " + ex.Message);
                 }
-                txtCash.Clear();
-                listView1.Items.Clear();
             }
         }
+
+
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -350,47 +406,36 @@ namespace POS
         {
             // Clear lvCart first so it only shows the current items
             // Clear previous items in lvCart before adding new ones
-            lvCart.Items.Clear();
+            lvCart.Items.Clear(); // Reset cart preview
 
             decimal total = 0;
 
             foreach (ListViewItem item in listView1.Items)
             {
-                string productName = item.SubItems[1].Text; // Name column
-                string qty = item.SubItems[3].Text;         // Quantity column
+                string productName = item.SubItems[1].Text; // Product name
+                string qty = item.SubItems[3].Text;         // Quantity
+                decimal price = decimal.Parse(item.SubItems[2].Text);
 
-                // Add to lvCart with only Name + Quantity
+                // Add to lvCart (Name + Quantity)
                 ListViewItem cartItem = new ListViewItem(productName);
                 cartItem.SubItems.Add(qty);
-
                 lvCart.Items.Add(cartItem);
 
-                // Compute total
-                decimal price = decimal.Parse(item.SubItems[2].Text);
                 total += price * int.Parse(qty);
             }
 
-            // Show total
             lblTotal.Text = "Total: ₱" + total.ToString("0.00");
 
-            // ✅ Check money
-            if (!decimal.TryParse(txtCash.Text, out decimal cash))
+            // Optional: check cash input early
+            if (decimal.TryParse(txtCash.Text, out decimal cash))
             {
-                MessageBox.Show("⚠ Please enter a valid cash amount.");
-                return;
-            }
-
-            decimal change = cash - total;
-
-            if (change < 0)
-            {
-                MessageBox.Show("❌ Not enough money! Customer still owes ₱" + Math.Abs(change).ToString("0.00"));
-            }
-            else
-            {
+                decimal change = cash - total;
                 lblCash.Text = "Cash: ₱" + cash.ToString("0.00");
-                lblChange.Text = "Change: ₱" + change.ToString("0.00");
-                MessageBox.Show("✅ Purchase successful!");
+
+                if (change >= 0)
+                    lblChange.Text = "Change: ₱" + change.ToString("0.00");
+                else
+                    lblChange.Text = "Change: ₱0.00 (Not enough)";
             }
 
         }
@@ -495,9 +540,9 @@ namespace POS
             if (result == DialogResult.Yes)
             {
                 // ✅ If user clicks YES → proceed to admin login form
-                AdminForm adminForm = new AdminForm();
+                Login4Admin adminForm = new Login4Admin();
                 adminForm.Show();
-                this.Hide();
+               
             }
             else
             {
@@ -510,6 +555,72 @@ namespace POS
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnReciept_Click(object sender, EventArgs e)
+        {
+            decimal total = 0;
+            foreach (ListViewItem item in listView1.Items)
+            {
+                total += decimal.Parse(item.SubItems[2].Text) * int.Parse(item.SubItems[3].Text);
+            }
+
+            ReceiptForm receipt = new ReceiptForm(listView1, total);
+            receipt.ShowDialog();
+           
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                GlobalUser.Clear();
+                // Close current form and go back to login
+                LoginForm login = new LoginForm();
+                login.Show();
+                this.Hide();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                GlobalUser.Clear();
+                // Close current form and go back to login
+                LoginForm login = new LoginForm();
+                login.Show();
+                this.Hide();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // Confirmation message
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to login as Admin?",
+                "Admin Login Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // ✅ If user clicks YES → proceed to admin login form
+                Login4Admin adminForm = new Login4Admin();
+                adminForm.Show();
+
+            }
+            else
+            {
+                // ❌ If user clicks NO → stay on the current form
+                MessageBox.Show("Admin login cancelled.", "Cancelled",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

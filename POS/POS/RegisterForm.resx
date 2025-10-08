@@ -123,13 +123,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="name.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 14.25pt</value>
+    <value>Microsoft Sans Serif, 18pt</value>
   </data>
   <data name="name.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1010, 342</value>
+    <value>35, 285</value>
   </data>
   <data name="name.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 29</value>
+    <value>256, 35</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="name.TabIndex" type="System.Int32, mscorlib">
@@ -151,13 +151,13 @@
     <value>None</value>
   </data>
   <data name="txtusername.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 14.25pt</value>
+    <value>Microsoft Sans Serif, 18pt</value>
   </data>
   <data name="txtusername.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1010, 406</value>
+    <value>35, 346</value>
   </data>
   <data name="txtusername.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 29</value>
+    <value>256, 35</value>
   </data>
   <data name="txtusername.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -178,13 +178,13 @@
     <value>None</value>
   </data>
   <data name="role.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 14.25pt</value>
+    <value>Microsoft Sans Serif, 18pt</value>
   </data>
   <data name="role.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1013, 236</value>
+    <value>35, 222</value>
   </data>
   <data name="role.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 32</value>
+    <value>256, 37</value>
   </data>
   <data name="role.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -204,23 +204,29 @@
   <data name="reg.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
+  <data name="reg.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="reg.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
+    <value>Nirmala UI, 15pt, style=Bold</value>
   </data>
   <data name="reg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="reg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1079, 518</value>
+    <value>74, 476</value>
   </data>
   <data name="reg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 36</value>
+    <value>185, 38</value>
   </data>
   <data name="reg.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
   <data name="reg.Text" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="reg.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
   </data>
   <data name="&gt;&gt;reg.Name" xml:space="preserve">
     <value>reg</value>
@@ -244,10 +250,10 @@
     <value>NoControl</value>
   </data>
   <data name="b_login.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1076, 573</value>
+    <value>107, 529</value>
   </data>
   <data name="b_login.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 19</value>
+    <value>115, 19</value>
   </data>
   <data name="b_login.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -273,20 +279,17 @@
   <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
+    <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1007, 323</value>
+    <value>110, 262</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 16</value>
+    <value>115, 20</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -312,11 +315,8 @@
   <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
+    <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
@@ -325,10 +325,10 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1007, 387</value>
+    <value>107, 323</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 16</value>
+    <value>118, 20</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -354,20 +354,17 @@
   <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
+    <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1010, 446</value>
+    <value>107, 384</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 16</value>
+    <value>113, 20</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -394,13 +391,13 @@
     <value>None</value>
   </data>
   <data name="txtpassword.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 14.25pt</value>
+    <value>Microsoft Sans Serif, 18pt</value>
   </data>
   <data name="txtpassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1010, 465</value>
+    <value>35, 407</value>
   </data>
   <data name="txtpassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 29</value>
+    <value>256, 35</value>
   </data>
   <data name="txtpassword.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -420,9 +417,6 @@
   <data name="label4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
@@ -430,10 +424,10 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1087, 213</value>
+    <value>110, 199</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 20</value>
+    <value>112, 20</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -454,36 +448,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 129</value>
-  </data>
-  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>802, 478</value>
-  </data>
-  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
-  </data>
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
-    <value>pictureBox1</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="chkShow.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -508,10 +472,10 @@
     <value>NoControl</value>
   </data>
   <data name="chkShow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1272, 465</value>
+    <value>296, 407</value>
   </data>
   <data name="chkShow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 29</value>
+    <value>36, 35</value>
   </data>
   <data name="chkShow.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -531,33 +495,56 @@
   <data name="&gt;&gt;chkShow.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="pictureBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>103, 35</value>
+  </data>
+  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 79</value>
+  </data>
+  <data name="pictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>StretchImage</value>
+  </data>
+  <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Name" xml:space="preserve">
+    <value>pictureBox2</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft JhengHei, 15.75pt, style=Italic</value>
+    <value>Nirmala UI, 20.25pt, style=Bold</value>
   </data>
-  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="label5.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomLeft</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>236, 624</value>
+    <value>102, 119</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>536, 54</value>
+    <value>136, 40</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>34</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>A point-of-sale system used for managing 
-sales transactions, inventory, and reports in real time.</value>
+    <value>Register</value>
   </data>
   <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -578,7 +565,7 @@ sales transactions, inventory, and reports in real time.</value>
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1584, 861</value>
+    <value>343, 596</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Register</value>

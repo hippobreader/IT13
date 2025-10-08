@@ -39,10 +39,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtpassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chkShow = new System.Windows.Forms.CheckBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // name
@@ -67,7 +67,7 @@
             // reg
             // 
             resources.ApplyResources(this.reg, "reg");
-            this.reg.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.reg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
             this.reg.ForeColor = System.Drawing.Color.White;
             this.reg.Name = "reg";
             this.reg.UseVisualStyleBackColor = false;
@@ -76,6 +76,7 @@
             // b_login
             // 
             resources.ApplyResources(this.b_login, "b_login");
+            this.b_login.BackColor = System.Drawing.Color.White;
             this.b_login.Name = "b_login";
             this.b_login.TabStop = true;
             this.b_login.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.b_login_LinkClicked_1);
@@ -83,18 +84,21 @@
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
+            this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Name = "label1";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
+            this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Name = "label2";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
+            this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Name = "label3";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
@@ -107,39 +111,42 @@
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
+            this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Name = "label4";
-            // 
-            // pictureBox1
-            // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Image = global::POS.Properties.Resources._55bd8ac6_b523_4ce8_9d65_ac4f8919d86a;
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // chkShow
             // 
             resources.ApplyResources(this.chkShow, "chkShow");
-            this.chkShow.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.chkShow.BackColor = System.Drawing.Color.White;
             this.chkShow.BackgroundImage = global::POS.Properties.Resources.show;
-            this.chkShow.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.chkShow.ForeColor = System.Drawing.Color.White;
             this.chkShow.Name = "chkShow";
             this.chkShow.UseVisualStyleBackColor = false;
             this.chkShow.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged_1);
             // 
+            // pictureBox2
+            // 
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.pictureBox2.Image = global::POS.Properties.Resources._55bd8ac6_b523_4ce8_9d65_ac4f8919d86a;
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.label5.Name = "label5";
             // 
             // RegisterForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.chkShow);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -151,10 +158,10 @@
             this.Controls.Add(this.name);
             this.Controls.Add(this.txtpassword);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RegisterForm";
             this.Load += new System.EventHandler(this.RegisterForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,10 +177,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox chkShow;
         private System.Windows.Forms.TextBox txtpassword;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chkShow;
+        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label5;
     }
 }

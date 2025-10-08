@@ -21,6 +21,7 @@ namespace POS
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            GlobalUser.Clear();
         }
 
         private void register_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
@@ -32,50 +33,71 @@ namespace POS
 
         private void btn_login_Click_1(object sender, EventArgs e)
         {
+            string username = txtusername.Text.Trim();
+            string password = txtpass.Text.Trim();
+
+            // Validate input
+            if (username == "" || password == "")
+            {
+                MessageBox.Show("⚠ Please enter both username and password.");
+                return;
+            }
+
             using (MySqlConnection con = new MySqlConnection(Global.connectionString))
             {
                 try
                 {
                     con.Open();
 
-                    string query = "SELECT role FROM employee WHERE username=@username AND password=@password";
+                    string query = "SELECT role, name FROM employee WHERE username=@username AND password=@password";
                     MySqlCommand cmd = new MySqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@username", txtusername.Text.Trim());
-                    cmd.Parameters.AddWithValue("@password", txtpass.Text.Trim());
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", password);
 
-                    object result = cmd.ExecuteScalar();
-
-                    if (result != null)
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        string role = result.ToString();
+                        if (reader.Read())
+                        {
+                            // Store user info globally
+                            GlobalUser.Name = reader["name"].ToString();
+                            GlobalUser.Role = reader["role"].ToString();
+                            GlobalUser.Username = username;
+                            GlobalUser.IsLoggedIn = true;
 
-                        if (role == "Admin")
-                        {
-                            AdminForm admin = new AdminForm();
-                            admin.Show();
-                            this.Hide();
-                        }
-                        else if (role == "Cashier")
-                        {
-                            CashierForm cashier = new CashierForm();
-                            cashier.Show();
-                            this.Hide();
+                            string name = GlobalUser.Name;
+                            string role = GlobalUser.Role;
+
+                            if (role == "Admin")
+                            {
+                                AdminForm admin = new AdminForm(name);
+                                admin.Show();
+                                this.Hide();
+                            }
+                            else if (role == "Cashier")
+                            {
+                                CashierForm cashier = new CashierForm();
+                                cashier.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Unknown role: " + role);
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Unknown role: " + role);
+                            MessageBox.Show("⚠ Invalid username or password!");
                         }
                     }
-                    
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-
             }
-            string username = txtusername.Text.Trim();
-            string password = txtpass.Text.Trim();
+
+        
+         
 
             if (username == "" || password == "")
             {
@@ -137,6 +159,12 @@ namespace POS
         private void txtpass_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            GlobalUser.Clear();
+            txtusername.Focus();
         }
     }
 }
