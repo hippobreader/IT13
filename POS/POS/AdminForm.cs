@@ -152,7 +152,7 @@ namespace POS
             txtItemCode.Clear();
             txtName.Clear();
             txtQuan.Clear();
-            txtPrice.Clear();
+            txtPrice.Clear();//testfsfsf
 
             con.Open();
             cmd.ExecuteNonQuery();
